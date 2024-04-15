@@ -78,6 +78,48 @@ After successfully deploying Sentinel, you can navigate to the incidents tab to 
 ![16](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/382c04a1-c797-4b2e-8bc0-c811d443340c)
 ![17](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/89e5ca16-67c8-4413-b5ce-5c09f79c17cc)
 
+We've now hooked up our VM to Sentinel and Log Analytics Workspace, but we need to grab some info from our Logs. We need to take action when Windows 10 events happen and security alerts are triggered.
+
+Windows keeps tabs on loads of security events that cover all sorts of stuff, like logon events, policy changes, privileged use, processes, and more. To make sure we're on top of things, we're actively keeping an eye on the Windows security events on our Virtual Machine. It's a super important step because we can spot and deal with any potential security issues.
+
+To get started, just use the Azure Portal to find the VM we made earlier in the lab.
+use RDP on our pc client access our VM via Remote desktop client.
+
+![18](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/3f55711f-7c9d-4f6b-8e48-911496ab6a0a)
+
+Click “Security” and observe the event viewer shows several security events.
+![19](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/53d9959a-e9ae-4664-948f-be223256804a)
+![20](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/c7499313-1753-4135-ad9e-de2dbf918fd8)
+![21](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/787e2009-9740-4f77-a8c9-ee0587d3b7b1)
+
+Observe the 4624 successful login
+
+Sentinel SIEM is a tool that uses Kusto Query Language (KQL) to extract data from logs, which can help in identifying potential security threats. KQL has various syntax rules and query construction methods, but we will be using a few basic KQL commands to extract data and write analytics rules.
+
+The security event is a table that contains all the events observed in the event viewer. We use this table to extract data from in order to analyze security events.
+
+The 'where' command filters data based on a specific category. In this case, we use this command to filter and obtain only the events that correspond to successful logins. 
+
+The 'project' command specifies the data to be displayed when the query is run. In this specific scenario, we only want to see the time the logon event occurred, the computer from which it came, and the account on this computer that generated the event. This information can help in identifying potential security threats and taking necessary actions to prevent them.
+
+![22](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/4440f5f6-dafb-4622-9991-447c5d48cdca)
+![23](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/e4040356-6343-4fea-8a5a-f521094fbff7)
+![24](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/ff0784a2-dda3-4d88-9d45-e236d99df46e)
+
+we can now veiw all our logs, not nessesarily in a way we might love but we will fix that shortly.
+![25](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/454606b4-63eb-4fcd-b054-126e87c6a3b8)
+![26](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/b5fa54ce-9dee-44a5-8543-df4270ca6e4a)
+![27](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/f63722ef-0b86-431c-a96a-2923b6c184fd)
+
+The Mitre framework shows way and techniques hackers use to compromise your environment.
+We need to generate some activity in our VM to detect a scheduled task creation.
+![28](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/3b35bf39-bd7d-40c5-83aa-4dec269ea1bc)
+
+![29](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/308670b7-a577-4586-8caa-0c111a2d0396)
+![30](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/35c1bae3-658f-4fc4-8342-25cad4a40098)
+[31](https://github.com/kelubia/Azure-Cloud-Detection-lab/assets/98921903/8a3941bf-44d7-4057-867f-6b35af4187f5)
+
+We'll need to create some KQL logic to be alerted whenever a scheduled task is created. To do this, head to the Analytics Rules section located on the Sentinel Home Page. There, you can create a scheduled query that will monitor for any instances of scheduled task creation and trigger an alert accordingly. This will help us stay on top of any potential security issues and take action quickly.
 
 
 
