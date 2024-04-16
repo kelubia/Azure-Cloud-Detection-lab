@@ -1,4 +1,4 @@
-# Azure-Cloud-Detection-lab
+# Azure-Cloud SIEM/SOAR-Detection-lab
 Monitor, prioritize and remediate potential Cloud threats in real time. 
 
 I established and managed a dedicated cloud based home laboratory environment that closely imitated the Azure cloud infrastructure. I employed various monitoring solutions and methodologies to ensure the security of Azure services and resources and prevent unauthorised activities. I designed and carried out custom attack simulations to simulate real-world cyber threats targeting Azure deployments. I also implemented advanced attack detection techniques and response mechanisms utilizing cloud-based SIEM/SOAR solutions, providing capabilities such as security analytics, threat intelligence, threat response, and more  to identify and mitigate security incidents quickly. This hands-on experience has helped me gain expertise in Azure cloud security, threat detection, and incident response. It has strengthened my commitment to upholding the integrity and resilience of cloud-based environments.
